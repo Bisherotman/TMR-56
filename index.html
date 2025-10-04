@@ -231,24 +231,25 @@
         revRating: document.getElementById('revRating').value
       };
 
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxUZWDRHkblz_2cf8c7ttz-HXbgtmUJWOo_t9_w5rQRUFinrY-TCnReJnnFVlnZ-VUZFA/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-        });
-        const text = await response.text();
-        alert('استجابة الخادم: ' + text);
-        // يمكنك هنا تفريغ الحقول أو إظهار رسالة تأكيد في الصفحة
-      } catch (err) {
-        console.error(err);
-        alert('هنالك خطأ في الإرسال. حاول مرة أخرى.');
-      }
+    try {
+  const response = await fetch('https://script.google.com/macros/s/AKfycbxUZWDRHkblz_2cf8c7tz-HXbgtmUWOo_t9_w5rQRUFinrY-TCnReJnnFVInZ-VUZFA/exec', {
+    method: 'POST',
+    mode: 'no-cors', // ✅ هذا السطر ضروري لحل مشكلة CORS
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  alert('تم إرسال النموذج بنجاح ✅');
+} catch (err) {
+  console.error(err);
+  alert('حدث خطأ في الإرسال. حاول مرة أخرى.');
+}
     }
   </script>
 </body>
 </html>
+
 
 
