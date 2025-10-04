@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نموذج تسميع - تحفيظ مسجد الرحمة</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #f7f7f7;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    img.logo {
+      max-width: 120px;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #006837;
+      font-size: 1.2rem;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    input, select, button {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    input[readonly] {
+      background-color: #eee;
+    }
+    .section-title {
+      margin-top: 2rem;
+      font-weight: bold;
+      color: #005522;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .col {
+      flex: 1 1 0;
+      min-width: 120px;
+    }
+    button {
+      background-color: #006837;
+      color: white;
+      font-weight: bold;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00502a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="شعار تحفيظ مسجد الرحمة.png" alt="شعار المسجد" class="logo" />
+    <h1>نموذج تسميع الطلاب</h1>
+
+    <div class="row">
+      <div class="col">
+        <label for="studentName">اسم الطالب</label>
+        <select id="studentName" required>
+          <option value="">اختر الطالب</option>
+          <option>احمد القصاص</option>
+          <option>اياد الحملي</option>
+          <option>أسامة الجابي</option>
+          <option>أمير برغوت</option>
+          <option>براء الكسم</option>
+          <option>تيم ابو النصر</option>
+          <option>جاد ابو شعر</option>
+          <option>جلال الدين حبنكي</option>
+          <option>حسين الطرزي</option>
+          <option>ريان بقاعي</option>
+          <option>عبد الاله السباعي</option>
+          <option>عمر حلواني</option>
+          <option>كريم حمزة</option>
+          <option>كريم ضفدع</option>
+          <option>لؤي عبد الباقي</option>
+          <option>محمد شنن</option>
+          <option>يزن النجار</option>
+          <option>يوسف نعمان</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="date">التاريخ</label>
+        <input type="date" id="date" required />
+      </div>
+      <div class="col">
+        <label for="day">اليوم</label>
+        <select id="day" required>
+          <option value="">اختر اليوم</option>
+          <option>الاثنين</option>
+          <option>الخميس</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-title">تسميع الحفظ</div>
+    <div class="row">
+      <div class="col">
+        <label for="sura">اسم السورة</label>
+        <input type="text" id="sura" required />
+      </div>
+      <div class="col">
+        <label for="fromAya">من آية</label>
+        <input type="number" id="fromAya" required />
+      </div>
+      <div class="col">
+        <label for="toAya">إلى آية</label>
+        <input type="number" id="toAya" required />
+      </div>
+      <div class="col">
+        <label for="rating">التقييم</label>
+        <input type="number" id="rating" min="5" max="10" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="lines">عدد الأسطر</label>
+        <input type="number" id="lines" oninput="calcPages('lines','pages')" required />
+      </div>
+      <div class="col">
+        <label for="pages">عدد الصفحات</label>
+        <input type="number" id="pages" readonly />
+      </div>
+    </div>
+
+    <div class="section-title">تسميع المراجعة</div>
+    <div class="row">
+      <div class="col">
+        <label for="revSura">اسم السورة</label>
+        <input type="text" id="revSura" required />
+      </div>
+      <div class="col">
+        <label for="revFrom">من آية</label>
+        <input type="number" id="revFrom" required />
+      </div>
+      <div class="col">
+        <label for="revTo">إلى آية</label>
+        <input type="number" id="revTo" required />
+      </div>
+      <div class="col">
+        <label for="revRating">التقييم</label>
+        <input type="number" id="revRating" min="5" max="10" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="revLines">عدد الأسطر</label>
+        <input type="number" id="revLines" oninput="calcPages('revLines','revPages')" required />
+      </div>
+      <div class="col">
+        <label for="revPages">عدد الصفحات</label>
+        <input type="number" id="revPages" readonly />
+      </div>
+    </div>
+
+    <button onclick="submitToGoogle()">📤 إرسال النموذج</button>
+  </div>
+
+  <script>
+    function calcPages(inputId, outputId) {
+      const val = parseFloat(document.getElementById(inputId).value);
+      document.getElementById(outputId).value = val ? (val / 15).toFixed(2) : '';
+    }
+
+    async function submitToGoogle() {
+      // التحقق من الحقول المطلوبة
+      const requiredFields = [
+        'studentName','date','day',
+        'sura','fromAya','toAya','lines','rating',
+        'revSura','revFrom','revTo','revLines','revRating'
+      ];
+      for (let id of requiredFields) {
+        const el = document.getElementById(id);
+        if (!el.value) {
+          alert('يرجى تعبئة جميع الحقول أولاً');
+          el.focus();
+          return;
+        }
+        if (el.type === 'number' && el.min && el.max) {
+          const num = Number(el.value);
+          if (num < Number(el.min) || num > Number(el.max)) {
+            alert('تأكد من أن القيم الرقمية داخل الحدود المسموحة');
+            el.focus();
+            return;
+          }
+        }
+      }
+
+      const payload = {
+        studentName: document.getElementById('studentName').value,
+        date: document.getElementById('date').value,
+        day: document.getElementById('day').value,
+        sura: document.getElementById('sura').value,
+        fromAya: document.getElementById('fromAya').value,
+        toAya: document.getElementById('toAya').value,
+        lines: document.getElementById('lines').value,
+        pages: document.getElementById('pages').value,
+        rating: document.getElementById('rating').value,
+        revSura: document.getElementById('revSura').value,
+        revFrom: document.getElementById('revFrom').value,
+        revTo: document.getElementById('revTo').value,
+        revLines: document.getElementById('revLines').value,
+        revPages: document.getElementById('revPages').value,
+        revRating: document.getElementById('revRating').value
+      };
+
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwH5xMmayVkGgnLF4TVsoDlK3KnXNQeWUnczuoNJS9hNk2mrqHhpq6cpIIrTBREVhk9dw/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+        });
+        const text = await response.text();
+        alert('استجابة الخادم: ' + text);
+        // يمكنك هنا تفريغ الحقول أو إظهار رسالة تأكيد في الصفحة
+      } catch (err) {
+        console.error(err);
+        alert('هنالك خطأ في الإرسال. حاول مرة أخرى.');
+      }
+    }
+  </script>
+</body>
+</html>
